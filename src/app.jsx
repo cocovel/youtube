@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import VideoList from "./components/video_list/video_list";
-import "./app.css";
+import styles from "./app.module.css";
+import SearchHeader from "./components/search_header/search_header";
 
 function App() {
   const [video, setVideos] = useState([]);
@@ -19,7 +20,12 @@ function App() {
       .then(result => setVideos(result.items))
       .catch(error => console.log("error", error));
   }, []);
-  return <VideoList key={video.id} video={video} />;
+  return (
+    <div className={StyleSheet.app}>
+      <SearchHeader />
+      <VideoList key={video.id} video={video} />
+    </div>
+  );
 }
 
 export default App;
